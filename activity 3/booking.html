@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book Tickets - IPL 2026</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation bar (links back to index.html) -->
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="index.html#matches">Matches</a>
+      <a href="booking.html" class="active">Book Ticket</a>
+      <a href="index.html#guidelines">Guidelines</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Ticket Booking Form</h2>
+      <p>Fill in all the details below. Fields marked * are required.</p>
+
+      <form action="#" method="post">
+
+        <!-- Name: text, required, 3 to 40 letters -->
+        <p>
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name"
+                 required minlength="3" maxlength="40"
+                 pattern="[A-Za-z ]+" title="Use letters and spaces only"
+                 placeholder="Full name">
+        </p>
+
+        <!-- Email: the browser checks the email format -->
+        <p>
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email"
+                 required placeholder="you@example.com">
+        </p>
+
+        <!-- Phone: exactly 10 digits, starting with 6 to 9 -->
+        <p>
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone"
+                 required minlength="10" maxlength="10"
+                 pattern="[6-9][0-9]{9}"
+                 title="Enter a 10-digit mobile number starting with 6, 7, 8 or 9"
+                 placeholder="10-digit number">
+        </p>
+
+        <!-- Match: dropdown. The empty first option makes "required" work -->
+        <p>
+          <label for="match">Match *</label>
+          <select id="match" name="match" required>
+            <option value="">-- Select a match --</option>
+            <option value="1">1: CSK vs MI, Chennai</option>
+            <option value="2">2: RCB vs CSK, Bengaluru</option>
+          </select>
+        </p>
+
+        <!-- Stand category: dropdown -->
+        <p>
+          <label for="stand">Stand Category *</label>
+          <select id="stand" name="stand" required>
+            <option value="">-- Select a stand --</option>
+            <option value="general">General</option>
+            <option value="premium">Premium</option>
+            <option value="vip">VIP</option>
+          </select>
+        </p>
+
+        <!-- Number of tickets: between 1 and 6 -->
+        <p>
+          <label for="tickets">Number of Tickets (1 to 6) *</label>
+          <input type="number" id="tickets" name="tickets"
+                 required min="1" max="6" value="1">
+        </p>
+
+        <!-- Radio buttons: choose ONE option (same name = one group) -->
+        <fieldset>
+          <legend>Ticket Delivery *</legend>
+          <label><input type="radio" name="delivery" value="email" required> E-ticket by email</label>
+          <label><input type="radio" name="delivery" value="counter"> Collect at stadium counter</label>
+        </fieldset>
+
+        <!-- Checkboxes: choose any number of options -->
+        <fieldset>
+          <legend>Extras (optional)</legend>
+          <label><input type="checkbox" name="extras" value="food"> Food combo</label>
+          <label><input type="checkbox" name="extras" value="parking"> Parking pass</label>
+          <label><input type="checkbox" name="extras" value="jersey"> Team jersey</label>
+        </fieldset>
+
+        <!-- Must be ticked before the form can be submitted -->
+        <p>
+          <label>
+            <input type="checkbox" name="agree" required>
+            I have read the guidelines and agree to follow them *
+          </label>
+        </p>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 IPL Ticket Booking</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IPL 2026 Ticket Booking - Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation bar (links to sections and booking.html) -->
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#matches">Matches</a>
+      <a href="booking.html">Book Ticket</a>
+      <a href="#my-bookings">My Bookings</a>
+      <a href="#guidelines">Guidelines</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Banner / Hero -->
+    <section class="hero">
+      <h1>Experience The Stadium Energy Live!</h1>
+      <a href="#matches"><button>View Schedule</button></a>
+      <a href="booking.html"><button>Book Ticket</button></a>
+    </section>
+
+    <!-- About IPL 2026 -->
+    <section>
+      <h2>About IPL 2026</h2>
+      <h3>Popular Teams</h3>
+      <ul>
+        <li>Chennai Super Kings</li>
+        <li>Mumbai Indians</li>
+        <li>Royal Challengers Bengaluru</li>
+      </ul>
+      <h3>Major Match Venues</h3>
+      <ul>
+        <li>Chennai</li>
+        <li>Mumbai</li>
+        <li>Bengaluru</li>
+      </ul>
+    </section>
+
+    <!-- Match Schedule -->
+    <section id="matches">
+      <h2>Match Schedule</h2>
+
+      <!-- Team filter -->
+      <label for="team-filter">Filter by Team:</label>
+      <select id="team-filter">
+        <option>All Teams</option>
+        <option>CSK</option>
+        <option>MI</option>
+        <option>RCB</option>
+      </select>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Match No</th>
+            <th>Teams</th>
+            <th>Date &amp; Time</th>
+            <th>Venue</th>
+            <th>General</th>
+            <th>Premium</th>
+            <th>VIP</th>
+            <th>Book</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>CSK vs MI</td>
+            <td>28 Mar 2026, 7:30 PM</td>
+            <td>Chennai</td>
+            <td>1200</td>
+            <td>3500</td>
+            <td>8000</td>
+            <td><a href="booking.html"><button>Book</button></a></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>RCB vs CSK</td>
+            <td>29 Mar 2026, 7:30 PM</td>
+            <td>Bengaluru</td>
+            <td>1500</td>
+            <td>4000</td>
+            <td>9000</td>
+            <td><a href="booking.html"><button>Book</button></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Quick Booking Link Banner -->
+    <section class="booking-cta">
+      <h2>Ready to Book?</h2>
+      <p>Reserve your stadium seat now with our interactive booking form.</p>
+      <a href="booking.html"><button>Proceed to Ticket Booking Form</button></a>
+    </section>
+
+    <!-- My Ticket Bookings -->
+    <section id="my-bookings">
+      <h2>My Ticket Bookings</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Match</th>
+            <th>Stand</th>
+            <th>Tickets</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>IPL-1001</td>
+            <td>CSK vs MI</td>
+            <td>General</td>
+            <td>2</td>
+            <td>2400</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Guidelines -->
+    <section id="guidelines">
+      <h2>Guidelines</h2>
+      <article class="card">
+        <h3>Ticket Verification</h3>
+        <p>Show your ticket QR code at the gate.</p>
+      </article>
+      <article class="card">
+        <h3>ID Proof Requirement</h3>
+        <p>Carry a valid photo ID.</p>
+      </article>
+      <article class="card">
+        <h3>Prohibited Items</h3>
+        <p>Outside food, bottles and sharp objects are not allowed.</p>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 IPL Ticket Booking</p>
+  </footer>
+
+</body>
+</html>
