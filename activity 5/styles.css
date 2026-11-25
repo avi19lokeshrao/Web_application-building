@@ -1,0 +1,657 @@
+/* ==========================================================================
+   IPL 2026 Ticket Booking - Activity 5 Stylesheet
+   Focus: Responsive Layout, UI Polish, Smooth Scrolling & Toast Notifications
+   ========================================================================== */
+
+:root {
+  --primary: #0b1f3a;
+  --primary-light: #183661;
+  --accent: #f5b700;
+  --accent-hover: #dba300;
+  --background: #f4f6fa;
+  --surface: #ffffff;
+  --text: #1b2430;
+  --text-muted: #5a6a80;
+  --border: #dcdfe6;
+  --success: #10b981;
+  --info: #2563eb;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+/* Enable native smooth scroll as default behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding-top: 65px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ---------------------------------------------------------
+   Navigation Header
+   --------------------------------------------------------- */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--primary);
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding: 16px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.98rem;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--accent);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ---------------------------------------------------------
+   Sections & Layout
+   --------------------------------------------------------- */
+section {
+  padding: 50px 20px;
+  max-width: 1050px;
+  margin: 0 auto;
+  scroll-margin-top: 80px; /* Offset for fixed header */
+}
+
+h2 {
+  color: var(--primary);
+  font-size: 1.85rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: var(--accent);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------
+   Hero Banner
+   --------------------------------------------------------- */
+.hero {
+  max-width: none;
+  text-align: center;
+  padding: 85px 20px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0b1f3a 0%, #1e457e 50%, #0d284f 100%);
+  border-bottom: 5px solid var(--accent);
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  margin: 0 0 14px 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.hero-subtext {
+  font-size: 1.15rem;
+  color: #e0e7ff;
+  max-width: 650px;
+  margin: 0 auto 30px auto;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons a {
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------
+   Buttons
+   --------------------------------------------------------- */
+button {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 11px 24px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  box-shadow: 0 4px 12px rgba(245, 183, 0, 0.4);
+}
+
+.btn-secondary {
+  background-color: #e2e8f0;
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background-color: #cbd5e1;
+}
+
+.btn-highlight {
+  background-color: var(--accent);
+  color: var(--primary);
+}
+
+/* Table Book Button */
+.book-btn {
+  background-color: var(--accent);
+  color: var(--primary);
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.book-btn:hover {
+  background-color: var(--primary);
+  color: var(--accent);
+  box-shadow: 0 2px 8px rgba(11, 31, 58, 0.35);
+}
+
+/* ---------------------------------------------------------
+   About Grid & Cards
+   --------------------------------------------------------- */
+.about-grid,
+.guidelines-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 15px;
+}
+
+.card {
+  background-color: var(--surface);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  border-left: 5px solid var(--accent);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.card ul {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
+.card li {
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+/* ---------------------------------------------------------
+   Match Schedule & Tables
+   --------------------------------------------------------- */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.filter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-wrapper label {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.filter-wrapper select {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  font-size: 0.92rem;
+  cursor: pointer;
+  outline: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+th {
+  background-color: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #edf2f7;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+  background-color: #fffbeb;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.badge-success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+/* ---------------------------------------------------------
+   Ticket Booking Form Section & Highlight Animation
+   --------------------------------------------------------- */
+.booking-section {
+  background-color: #ffffff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-top: 4px solid var(--accent);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
+}
+
+/* Visual pulse highlight triggered when smooth scrolling lands on form */
+.form-highlight {
+  animation: pulseHighlight 1.5s ease-out;
+}
+
+@keyframes pulseHighlight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 183, 0, 0.7), var(--shadow-md);
+    transform: scale(1.01);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(245, 183, 0, 0.25), var(--shadow-lg);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 183, 0, 0), var(--shadow-md);
+    transform: scale(1);
+  }
+}
+
+.booking-header {
+  margin-bottom: 25px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin-top: -10px;
+  font-size: 0.98rem;
+}
+
+form {
+  max-width: 720px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--primary);
+  font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+form select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.98rem;
+  color: var(--text);
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+form select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(245, 183, 0, 0.3);
+}
+
+input.input-error,
+form select.input-error {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.field-error {
+  display: block;
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-top: 4px;
+  min-height: 18px;
+}
+
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin-bottom: 22px;
+  background-color: #fafbfd;
+}
+
+legend {
+  font-weight: 700;
+  color: var(--primary);
+  padding: 0 8px;
+  font-size: 0.95rem;
+}
+
+fieldset label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 22px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  font-size: 0.93rem;
+}
+
+fieldset input[type="radio"],
+fieldset input[type="checkbox"],
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+/* ---------------------------------------------------------
+   TOAST NOTIFICATION COMPONENT (Key Requirement)
+   --------------------------------------------------------- */
+.toast-container {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  width: calc(100% - 48px);
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background-color: #ffffff;
+  color: var(--text);
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.18), 0 4px 10px -2px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid var(--info);
+  font-size: 0.93rem;
+  line-height: 1.45;
+  position: relative;
+  overflow: hidden;
+  animation: toastSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Toast Variants */
+.toast-success {
+  border-left-color: var(--success);
+}
+
+.toast-info {
+  border-left-color: var(--info);
+}
+
+.toast-warning {
+  border-left-color: var(--warning);
+}
+
+.toast-error {
+  border-left-color: var(--danger);
+}
+
+/* Toast Icon */
+.toast-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.toast-success .toast-icon { color: var(--success); }
+.toast-info .toast-icon { color: var(--info); }
+.toast-warning .toast-icon { color: var(--warning); }
+.toast-error .toast-icon { color: var(--danger); }
+
+/* Toast Content */
+.toast-content {
+  flex-grow: 1;
+}
+
+.toast-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 2px;
+  color: var(--primary);
+}
+
+.toast-message {
+  color: var(--text);
+}
+
+/* Toast Close Button */
+.toast-close {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.3rem;
+  color: #94a3b8;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+.toast-close:hover {
+  color: var(--text);
+  transform: none;
+  background: none;
+  box-shadow: none;
+}
+
+/* Toast Exit Animation */
+.toast.toast-hide {
+  animation: toastSlideOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(110%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(110%);
+  }
+}
+
+/* ---------------------------------------------------------
+   Footer
+   --------------------------------------------------------- */
+footer {
+  background-color: var(--primary);
+  color: #cbd5e1;
+  text-align: center;
+  padding: 28px 20px;
+  margin-top: 60px;
+  border-top: 4px solid var(--accent);
+  font-size: 0.92rem;
+}
+
+/* ---------------------------------------------------------
+   Responsive Media Queries
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+  nav {
+    gap: 14px;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .booking-section {
+    padding: 24px 18px;
+  }
+
+  .toast-container {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-width: none;
+  }
+}

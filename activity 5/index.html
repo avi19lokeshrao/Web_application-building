@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IPL 2026 Ticket Booking - JavaScript Basics & User Interaction</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav>
+      <a href="#matches" class="nav-link">Matches</a>
+      <a href="#booking" class="nav-link">Book Ticket</a>
+      <a href="#my-bookings" class="nav-link">My Bookings</a>
+      <a href="#guidelines" class="nav-link">Guidelines</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Banner / Hero Section -->
+    <section class="hero">
+      <h1>Experience The Stadium Energy Live!</h1>
+      <p class="hero-subtext">Book your favorite match tickets with fast, seamless online reservation.</p>
+      <div class="hero-buttons">
+        <a href="#matches" class="scroll-btn"><button type="button">View Schedule</button></a>
+        <a href="#booking" class="scroll-btn"><button type="button" class="btn-highlight">Book Ticket</button></a>
+      </div>
+    </section>
+
+    <!-- About IPL 2026 Section -->
+    <section id="about">
+      <h2>About IPL 2026</h2>
+      <div class="about-grid">
+        <div class="card">
+          <h3>Popular Teams</h3>
+          <ul>
+            <li>Chennai Super Kings (CSK)</li>
+            <li>Mumbai Indians (MI)</li>
+            <li>Royal Challengers Bengaluru (RCB)</li>
+            <li>Kolkata Knight Riders (KKR)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Major Match Venues</h3>
+          <ul>
+            <li>M. A. Chidambaram Stadium, Chennai</li>
+            <li>Wankhede Stadium, Mumbai</li>
+            <li>M. Chinnaswamy Stadium, Bengaluru</li>
+            <li>Eden Gardens, Kolkata</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Match Schedule Section -->
+    <section id="matches">
+      <div class="section-header">
+        <h2>Match Schedule</h2>
+        <div class="filter-wrapper">
+          <label for="team-filter">Filter by Team:</label>
+          <select id="team-filter">
+            <option value="all">All Teams</option>
+            <option value="CSK">Chennai Super Kings (CSK)</option>
+            <option value="MI">Mumbai Indians (MI)</option>
+            <option value="RCB">Royal Challengers Bengaluru (RCB)</option>
+            <option value="KKR">Kolkata Knight Riders (KKR)</option>
+          </select>
+        </div>
+      </div>
+
+      <table id="matches-table">
+        <thead>
+          <tr>
+            <th>Match No</th>
+            <th>Teams</th>
+            <th>Date &amp; Time</th>
+            <th>Venue</th>
+            <th>General</th>
+            <th>Premium</th>
+            <th>VIP</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-team="CSK MI">
+            <td>1</td>
+            <td><strong>CSK vs MI</strong></td>
+            <td>28 Mar 2026, 7:30 PM</td>
+            <td>Chennai</td>
+            <td>₹1,200</td>
+            <td>₹3,500</td>
+            <td>₹8,000</td>
+            <td>
+              <button type="button" class="book-btn" data-match-id="1" data-match-name="1: CSK vs MI, Chennai">
+                Book
+              </button>
+            </td>
+          </tr>
+          <tr data-team="RCB CSK">
+            <td>2</td>
+            <td><strong>RCB vs CSK</strong></td>
+            <td>29 Mar 2026, 7:30 PM</td>
+            <td>Bengaluru</td>
+            <td>₹1,500</td>
+            <td>₹4,000</td>
+            <td>₹9,000</td>
+            <td>
+              <button type="button" class="book-btn" data-match-id="2" data-match-name="2: RCB vs CSK, Bengaluru">
+                Book
+              </button>
+            </td>
+          </tr>
+          <tr data-team="MI KKR">
+            <td>3</td>
+            <td><strong>MI vs KKR</strong></td>
+            <td>31 Mar 2026, 7:30 PM</td>
+            <td>Mumbai</td>
+            <td>₹1,300</td>
+            <td>₹3,800</td>
+            <td>₹8,500</td>
+            <td>
+              <button type="button" class="book-btn" data-match-id="3" data-match-name="3: MI vs KKR, Mumbai">
+                Book
+              </button>
+            </td>
+          </tr>
+          <tr data-team="RCB MI">
+            <td>4</td>
+            <td><strong>RCB vs MI</strong></td>
+            <td>02 Apr 2026, 7:30 PM</td>
+            <td>Bengaluru</td>
+            <td>₹1,600</td>
+            <td>₹4,200</td>
+            <td>₹9,500</td>
+            <td>
+              <button type="button" class="book-btn" data-match-id="4" data-match-name="4: RCB vs MI, Bengaluru">
+                Book
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Ticket Booking Form Section -->
+    <section id="booking" class="booking-section">
+      <div class="booking-header">
+        <h2>Ticket Booking Form</h2>
+        <p class="subtitle">Select a match above or pick from the form below. Fields marked * are required.</p>
+      </div>
+
+      <form id="booking-form" novalidate>
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required minlength="3" maxlength="40"
+                 pattern="[A-Za-z ]+" title="Letters and spaces only" placeholder="e.g. Rahul Sharma">
+          <span class="field-error" id="name-error"></span>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com">
+          <span class="field-error" id="email-error"></span>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" required minlength="10" maxlength="10"
+                 pattern="[6-9][0-9]{9}" title="10-digit number starting with 6, 7, 8, or 9"
+                 placeholder="10-digit mobile number">
+          <span class="field-error" id="phone-error"></span>
+        </div>
+
+        <!-- Match Select -->
+        <div class="form-group">
+          <label for="match">Select Match *</label>
+          <select id="match" name="match" required>
+            <option value="">-- Choose a Match --</option>
+            <option value="1">1: CSK vs MI, Chennai</option>
+            <option value="2">2: RCB vs CSK, Bengaluru</option>
+            <option value="3">3: MI vs KKR, Mumbai</option>
+            <option value="4">4: RCB vs MI, Bengaluru</option>
+          </select>
+          <span class="field-error" id="match-error"></span>
+        </div>
+
+        <!-- Stand Category -->
+        <div class="form-group">
+          <label for="stand">Stand Category *</label>
+          <select id="stand" name="stand" required>
+            <option value="">-- Select Stand --</option>
+            <option value="General">General Stand</option>
+            <option value="Premium">Premium Stand</option>
+            <option value="VIP">VIP Lounge</option>
+          </select>
+          <span class="field-error" id="stand-error"></span>
+        </div>
+
+        <!-- Number of Tickets -->
+        <div class="form-group">
+          <label for="tickets">Number of Tickets (1 to 6) *</label>
+          <input type="number" id="tickets" name="tickets" required min="1" max="6" value="1">
+          <span class="field-error" id="tickets-error"></span>
+        </div>
+
+        <!-- Delivery Option -->
+        <fieldset>
+          <legend>Ticket Delivery Method *</legend>
+          <label>
+            <input type="radio" name="delivery" value="E-Ticket" checked required> E-Ticket (Email delivery)
+          </label>
+          <label>
+            <input type="radio" name="delivery" value="Stadium Pickup" required> Stadium Counter Pickup
+          </label>
+        </fieldset>
+
+        <!-- Extras -->
+        <fieldset>
+          <legend>Optional Add-ons</legend>
+          <label><input type="checkbox" name="extras" value="Food Combo"> Food Combo (+₹350)</label>
+          <label><input type="checkbox" name="extras" value="Parking Pass"> Reserved Parking (+₹250)</label>
+          <label><input type="checkbox" name="extras" value="Official Jersey"> Official Team Jersey (+₹999)</label>
+        </fieldset>
+
+        <!-- Guidelines Agreement -->
+        <div class="form-group checkbox-group">
+          <label>
+            <input type="checkbox" id="agree" name="agree" required>
+            I have read and agree to stadium guidelines &amp; safety policies *
+          </label>
+          <span class="field-error" id="agree-error"></span>
+        </div>
+
+        <!-- Form Action Buttons -->
+        <div class="form-actions">
+          <button type="submit" id="submit-btn" class="btn-primary">Confirm &amp; Book Tickets</button>
+          <button type="reset" id="reset-btn" class="btn-secondary">Reset Form</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- My Ticket Bookings Section -->
+    <section id="my-bookings">
+      <h2>My Ticket Bookings</h2>
+      <table id="bookings-table">
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Name</th>
+            <th>Match</th>
+            <th>Stand</th>
+            <th>Tickets</th>
+            <th>Delivery</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="bookings-body">
+          <tr>
+            <td>IPL-1001</td>
+            <td>Rahul Sharma</td>
+            <td>CSK vs MI</td>
+            <td>General</td>
+            <td>2</td>
+            <td>E-Ticket</td>
+            <td><span class="badge badge-success">Confirmed</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Guidelines Section -->
+    <section id="guidelines">
+      <h2>Stadium Guidelines</h2>
+      <div class="guidelines-grid">
+        <article class="card">
+          <h3>Digital Ticket Verification</h3>
+          <p>Display your digital QR code e-ticket directly at entry turnstiles for fast, contactless gate scanning.</p>
+        </article>
+        <article class="card">
+          <h3>Government ID Required</h3>
+          <p>Please carry any valid government photo ID (Aadhaar, Driving License, Voter ID, or Passport).</p>
+        </article>
+        <article class="card">
+          <h3>Security &amp; Prohibited Items</h3>
+          <p>Bottles, outside food, cameras with detachable lenses, and sharp objects are strictly prohibited inside.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 IPL Ticket Booking Portal. Developed for Web Application Development Activity 5.</p>
+  </footer>
+
+  <!-- Link JavaScript File -->
+  <script src="app.js"></script>
+</body>
+</html>
