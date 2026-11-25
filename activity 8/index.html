@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPL 2026 Ticket Booking - Activity 8: Responsive Layout (CSS Grid &amp; Flexbox)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Toast Notification Container for User Feedback -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Header with Flexbox Navigation -->
+  <header class="header">
+    <nav class="navbar" aria-label="Main Navigation">
+      <!-- Flex Item 1: Brand Logo & Title -->
+      <a href="#hero" class="nav-brand">
+        <span class="brand-icon">🏏</span>
+        <div class="brand-text-group">
+          <span class="brand-title">IPL 2026</span>
+          <span class="brand-subtitle">Ticket Portal</span>
+        </div>
+      </a>
+
+      <!-- Hamburger Menu Toggle Button (Visible on Mobile/Tablet via Media Query) -->
+      <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+      <!-- Flex Item 2: Navigation Links (Collapses into Mobile Drawer on small screens) -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#matches" class="nav-link">Match Schedule</a></li>
+        <li><a href="#booking" class="nav-link">Book Tickets</a></li>
+        <li><a href="#my-bookings" class="nav-link">My Bookings</a></li>
+        <li><a href="#guidelines" class="nav-link">Guidelines</a></li>
+        <li><a href="#booking" class="nav-link nav-cta-btn">Book Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero / Banner Section -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <span class="hero-badge">⚡ Official IPL 2026 Ticket Reservation</span>
+        <h1>Feel The Roar of The Stadium Live!</h1>
+        <p class="hero-description">
+          Experience world-class cricket action. Responsive real-time seat availability, live price calculation, 
+          and dynamic match filtering across all mobile, tablet, and desktop devices.
+        </p>
+        <div class="hero-actions">
+          <a href="#matches" class="btn btn-primary">Explore Matches</a>
+          <a href="#booking" class="btn btn-outline">Instant Booking</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <span class="stat-num">10</span>
+          <span class="stat-label">Powerhouse Teams</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">74</span>
+          <span class="stat-label">Thrilling Matches</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Secure &amp; Verified</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Match Schedule Section: Featuring CSS Grid Cards, Team Filter & Grid/List View Toggle -->
+    <section id="matches" class="section">
+      <div class="section-title-wrap">
+        <div>
+          <span class="section-subtitle">FIXTURES &amp; TICKETS</span>
+          <h2 class="section-title">Match Schedule &amp; Stand Rates</h2>
+          <p class="section-desc">Browse upcoming league matches, filter by your favorite franchise, and switch between card grid and compact list view.</p>
+        </div>
+      </div>
+
+      <!-- Controls Bar: Team Filter and View Switcher -->
+      <div class="schedule-controls">
+        <div class="filter-group">
+          <label for="team-filter" class="control-label">
+            <span class="control-icon">🔍</span> Filter by Team:
+          </label>
+          <select id="team-filter" class="form-select filter-select">
+            <option value="all">All Teams (All Matches)</option>
+            <option value="CSK">Chennai Super Kings (CSK)</option>
+            <option value="MI">Mumbai Indians (MI)</option>
+            <option value="RCB">Royal Challengers Bengaluru (RCB)</option>
+            <option value="KKR">Kolkata Knight Riders (KKR)</option>
+            <option value="GT">Gujarat Titans (GT)</option>
+            <option value="RR">Rajasthan Royals (RR)</option>
+          </select>
+        </div>
+
+        <!-- Team Quick Pill Filters -->
+        <div class="quick-pills" id="quick-pills">
+          <button type="button" class="pill-btn active" data-team="all">All</button>
+          <button type="button" class="pill-btn" data-team="CSK">CSK</button>
+          <button type="button" class="pill-btn" data-team="RCB">RCB</button>
+          <button type="button" class="pill-btn" data-team="MI">MI</button>
+          <button type="button" class="pill-btn" data-team="KKR">KKR</button>
+        </div>
+
+        <!-- Grid vs List View Toggle -->
+        <div class="view-toggle-group">
+          <span class="view-label">Layout:</span>
+          <button type="button" id="grid-view-btn" class="toggle-btn active" title="Switch to Grid View" aria-pressed="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Grid</span>
+          </button>
+          <button type="button" id="list-view-btn" class="toggle-btn" title="Switch to List View" aria-pressed="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+            <span>List</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Match Counter Indicator -->
+      <div class="matches-status-bar">
+        <span id="match-counter-text">Showing <strong>6</strong> of <strong>6</strong> scheduled fixtures</span>
+        <span class="active-layout-badge" id="layout-badge">View: Grid Layout (CSS Grid)</span>
+      </div>
+
+      <!-- CSS Grid Container for Match Schedule Cards -->
+      <div id="matches-container" class="matches-grid">
+        
+        <!-- Match Card 1 -->
+        <article class="match-card" data-match-id="1" data-teams="CSK MI">
+          <div class="card-top-bar">
+            <span class="match-badge">Match 01</span>
+            <span class="tournament-tag">IPL 2026 Opening Clashes</span>
+          </div>
+          <div class="teams-versus-container">
+            <div class="team-block team-csk">
+              <span class="team-symbol">🦁</span>
+              <span class="team-code">CSK</span>
+              <span class="team-full">Chennai Super Kings</span>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="team-block team-mi">
+              <span class="team-symbol">🌪️</span>
+              <span class="team-code">MI</span>
+              <span class="team-full">Mumbai Indians</span>
+            </div>
+          </div>
+          <div class="match-meta">
+            <div class="meta-item">
+              <span class="meta-icon">📅</span>
+              <span class="meta-text">28 Mar 2026, 7:30 PM IST</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-icon">📍</span>
+              <span class="meta-text">M. A. Chidambaram Stadium, Chennai</span>
+            </div>
+          </div>
+          <div class="card-pricing-grid">
+            <div class="price-chip">
+              <span class="stand-name">General</span>
+              <span class="stand-cost">₹1,200</span>
+            </div>
+            <div class="price-chip">
+              <span class="stand-name">Premium</span>
+              <span class="stand-cost">₹3,500</span>
+            </div>
+            <div class="price-chip highlight-chip">
+              <span class="stand-name">VIP Lounge</span>
+              <span class="stand-cost">₹8,000</span>
+            </div>
+          </div>
+          <div class="card-action">
+            <button type="button" class="btn btn-book book-trigger" data-match-id="1" data-match-title="CSK vs MI">
+              Book Tickets
+            </button>
+          </div>
+        </article>
+
+        <!-- Match Card 2 -->
+        <article class="match-card" data-match-id="2" data-teams="RCB CSK">
+          <div class="card-top-bar">
+            <span class="match-badge highlight-badge">Match 02 &bull; Derby</span>
+            <span class="tournament-tag">Southern Rivalry</span>
+          </div>
+          <div class="teams-versus-container">
+            <div class="team-block team-rcb">
+              <span class="team-symbol">🔥</span>
+              <span class="team-code">RCB</span>
+              <span class="team-full">Royal Challengers Bengaluru</span>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="team-block team-csk">
+              <span class="team-symbol">🦁</span>
+              <span class="team-code">CSK</span>
+              <span class="team-full">Chennai Super Kings</span>
+            </div>
+          </div>
+          <div class="match-meta">
+            <div class="meta-item">
+              <span class="meta-icon">📅</span>
+              <span class="meta-text">29 Mar 2026, 7:30 PM IST</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-icon">📍</span>
+              <span class="meta-text">M. Chinnaswamy Stadium, Bengaluru</span>
+            </div>
+          </div>
+          <div class="card-pricing-grid">
+            <div class="price-chip">
+              <span class="stand-name">General</span>
+              <span class="stand-cost">₹1,500</span>
+            </div>
+            <div class="price-chip">
+              <span class="stand-name">Premium</span>
+              <span class="stand-cost">₹4,000</span>
+            </div>
+            <div class="price-chip highlight-chip">
+              <span class="stand-name">VIP Lounge</span>
+              <span class="stand-cost">₹9,000</span>
+            </div>
+          </div>
+          <div class="card-action">
+            <button type="button" class="btn btn-book book-trigger" data-match-id="2" data-match-title="RCB vs CSK">
+              Book Tickets
+            </button>
+          </div>
+        </article>
+
+        <!-- Match Card 3 -->
+        <article class="match-card" data-match-id="3" data-teams="MI KKR">
+          <div class="card-top-bar">
+            <span class="match-badge">Match 03</span>
+            <span class="tournament-tag">Champions Clash</span>
+          </div>
+          <div class="teams-versus-container">
+            <div class="team-block team-mi">
+              <span class="team-symbol">🌪️</span>
+              <span class="team-code">MI</span>
+              <span class="team-full">Mumbai Indians</span>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="team-block team-kkr">
+              <span class="team-symbol">💜</span>
+              <span class="team-code">KKR</span>
+              <span class="team-full">Kolkata Knight Riders</span>
+            </div>
+          </div>
+          <div class="match-meta">
+            <div class="meta-item">
+              <span class="meta-icon">📅</span>
+              <span class="meta-text">31 Mar 2026, 7:30 PM IST</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-icon">📍</span>
+              <span class="meta-text">Wankhede Stadium, Mumbai</span>
+            </div>
+          </div>
+          <div class="card-pricing-grid">
+            <div class="price-chip">
+              <span class="stand-name">General</span>
+              <span class="stand-cost">₹1,300</span>
+            </div>
+            <div class="price-chip">
+              <span class="stand-name">Premium</span>
+              <span class="stand-cost">₹3,800</span>
+            </div>
+            <div class="price-chip highlight-chip">
+              <span class="stand-name">VIP Lounge</span>
+              <span class="stand-cost">₹8,500</span>
+            </div>
+          </div>
+          <div class="card-action">
+            <button type="button" class="btn btn-book book-trigger" data-match-id="3" data-match-title="MI vs KKR">
+              Book Tickets
+            </button>
+          </div>
+        </article>
+
+        <!-- Match Card 4 -->
+        <article class="match-card" data-match-id="4" data-teams="RCB MI">
+          <div class="card-top-bar">
+            <span class="match-badge highlight-badge">Match 04 &bull; High Heat</span>
+            <span class="tournament-tag">Mega Rivalry</span>
+          </div>
+          <div class="teams-versus-container">
+            <div class="team-block team-rcb">
+              <span class="team-symbol">🔥</span>
+              <span class="team-code">RCB</span>
+              <span class="team-full">Royal Challengers Bengaluru</span>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="team-block team-mi">
+              <span class="team-symbol">🌪️</span>
+              <span class="team-code">MI</span>
+              <span class="team-full">Mumbai Indians</span>
+            </div>
+          </div>
+          <div class="match-meta">
+            <div class="meta-item">
+              <span class="meta-icon">📅</span>
+              <span class="meta-text">02 Apr 2026, 7:30 PM IST</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-icon">📍</span>
+              <span class="meta-text">M. Chinnaswamy Stadium, Bengaluru</span>
+            </div>
+          </div>
+          <div class="card-pricing-grid">
+            <div class="price-chip">
+              <span class="stand-name">General</span>
+              <span class="stand-cost">₹1,600</span>
+            </div>
+            <div class="price-chip">
+              <span class="stand-name">Premium</span>
+              <span class="stand-cost">₹4,200</span>
+            </div>
+            <div class="price-chip highlight-chip">
+              <span class="stand-name">VIP Lounge</span>
+              <span class="stand-cost">₹9,500</span>
+            </div>
+          </div>
+          <div class="card-action">
+            <button type="button" class="btn btn-book book-trigger" data-match-id="4" data-match-title="RCB vs MI">
+              Book Tickets
+            </button>
+          </div>
+        </article>
+
+        <!-- Match Card 5 -->
+        <article class="match-card" data-match-id="5" data-teams="KKR CSK">
+          <div class="card-top-bar">
+            <span class="match-badge">Match 05</span>
+            <span class="tournament-tag">Eastern Showdown</span>
+          </div>
+          <div class="teams-versus-container">
+            <div class="team-block team-kkr">
+              <span class="team-symbol">💜</span>
+              <span class="team-code">KKR</span>
+              <span class="team-full">Kolkata Knight Riders</span>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="team-block team-csk">
+              <span class="team-symbol">🦁</span>
+              <span class="team-code">CSK</span>
+              <span class="team-full">Chennai Super Kings</span>
+            </div>
+          </div>
+          <div class="match-meta">
+            <div class="meta-item">
+              <span class="meta-icon">📅</span>
+              <span class="meta-text">05 Apr 2026, 7:30 PM IST</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-icon">📍</span>
+              <span class="meta-text">Eden Gardens, Kolkata</span>
+            </div>
+          </div>
+          <div class="card-pricing-grid">
+            <div class="price-chip">
+              <span class="stand-name">General</span>
+              <span class="stand-cost">₹1,250</span>
+            </div>
+            <div class="price-chip">
+              <span class="stand-name">Premium</span>
+              <span class="stand-cost">₹3,600</span>
+            </div>
+            <div class="price-chip highlight-chip">
+              <span class="stand-name">VIP Lounge</span>
+              <span class="stand-cost">₹8,200</span>
+            </div>
+          </div>
+          <div class="card-action">
+            <button type="button" class="btn btn-book book-trigger" data-match-id="5" data-match-title="KKR vs CSK">
+              Book Tickets
+            </button>
+          </div>
+        </article>
+
+        <!-- Match Card 6 -->
+        <article class="match-card" data-match-id="6" data-teams="GT RR">
+          <div class="card-top-bar">
+            <span class="match-badge">Match 06</span>
+            <span class="tournament-tag">Western Showdown</span>
+          </div>
+          <div class="teams-versus-container">
+            <div class="team-block team-gt">
+              <span class="team-symbol">⚡</span>
+              <span class="team-code">GT</span>
+              <span class="team-full">Gujarat Titans</span>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="team-block team-rr">
+              <span class="team-symbol">👑</span>
+              <span class="team-code">RR</span>
+              <span class="team-full">Rajasthan Royals</span>
+            </div>
+          </div>
+          <div class="match-meta">
+            <div class="meta-item">
+              <span class="meta-icon">📅</span>
+              <span class="meta-text">07 Apr 2026, 7:30 PM IST</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-icon">📍</span>
+              <span class="meta-text">Narendra Modi Stadium, Ahmedabad</span>
+            </div>
+          </div>
+          <div class="card-pricing-grid">
+            <div class="price-chip">
+              <span class="stand-name">General</span>
+              <span class="stand-cost">₹1,100</span>
+            </div>
+            <div class="price-chip">
+              <span class="stand-name">Premium</span>
+              <span class="stand-cost">₹3,400</span>
+            </div>
+            <div class="price-chip highlight-chip">
+              <span class="stand-name">VIP Lounge</span>
+              <span class="stand-cost">₹7,800</span>
+            </div>
+          </div>
+          <div class="card-action">
+            <button type="button" class="btn btn-book book-trigger" data-match-id="6" data-match-title="GT vs RR">
+              Book Tickets
+            </button>
+          </div>
+        </article>
+
+      </div>
+      
+      <!-- Empty state for zero filter matches -->
+      <div id="no-matches-msg" class="no-matches-box" style="display: none;">
+        <span class="empty-icon">🏏</span>
+        <h3>No matches found</h3>
+        <p>No fixtures found matching the selected team. Try choosing "All Teams".</p>
+        <button type="button" class="btn btn-secondary" id="reset-filter-btn">Reset Filter</button>
+      </div>
+    </section>
+
+    <!-- Ticket Booking Form & Live Interaction Section (2-Column CSS Grid on Desktop, 1-Col on Mobile) -->
+    <section id="booking" class="section booking-section">
+      <div class="section-title-wrap">
+        <div>
+          <span class="section-subtitle">SEAMLESS RESERVATION</span>
+          <h2 class="section-title">Ticket Booking &amp; Live Price Calculator</h2>
+          <p class="section-desc">Select your desired match, pick your stand tier, and adjust quantities to see live instant calculations on the summary card.</p>
+        </div>
+      </div>
+
+      <div class="booking-layout-grid">
+        <!-- Booking Form Container -->
+        <div class="booking-form-wrapper">
+          <form id="booking-form" novalidate>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required minlength="3" maxlength="40"
+                       placeholder="e.g. Rahul Sharma" autocomplete="name">
+                <span class="field-error" id="name-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required 
+                       placeholder="rahul@example.com" autocomplete="email">
+                <span class="field-error" id="email-error"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Mobile Phone (10 digits) *</label>
+                <input type="tel" id="phone" name="phone" required minlength="10" maxlength="10"
+                       pattern="[6-9][0-9]{9}" placeholder="9876543210" autocomplete="tel">
+                <span class="field-error" id="phone-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="match">Select Fixture *</label>
+                <select id="match" name="match" required>
+                  <option value="">-- Choose Match --</option>
+                  <option value="1">Match 1: CSK vs MI (Chennai - 28 Mar)</option>
+                  <option value="2">Match 2: RCB vs CSK (Bengaluru - 29 Mar)</option>
+                  <option value="3">Match 3: MI vs KKR (Mumbai - 31 Mar)</option>
+                  <option value="4">Match 4: RCB vs MI (Bengaluru - 02 Apr)</option>
+                  <option value="5">Match 5: KKR vs CSK (Kolkata - 05 Apr)</option>
+                  <option value="6">Match 6: GT vs RR (Ahmedabad - 07 Apr)</option>
+                </select>
+                <span class="field-error" id="match-error"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="stand">Stand Tier *</label>
+                <select id="stand" name="stand" required>
+                  <option value="">-- Select Stand Tier --</option>
+                  <option value="General">General Stand</option>
+                  <option value="Premium">Premium Stand</option>
+                  <option value="VIP">VIP Lounge</option>
+                </select>
+                <span class="field-error" id="stand-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="tickets">Ticket Quantity (1 - 6) *</label>
+                <div class="quantity-control-wrap">
+                  <button type="button" class="qty-btn" id="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" id="tickets" name="tickets" required min="1" max="6" value="1">
+                  <button type="button" class="qty-btn" id="qty-plus" aria-label="Increase quantity">&#43;</button>
+                </div>
+                <span class="field-error" id="tickets-error"></span>
+              </div>
+            </div>
+
+            <!-- Delivery Options -->
+            <fieldset class="form-fieldset">
+              <legend>Ticket Delivery Mode *</legend>
+              <div class="radio-flex-group">
+                <label class="radio-label">
+                  <input type="radio" name="delivery" value="E-Ticket" checked>
+                  <span class="radio-custom"></span>
+                  <span class="radio-text">
+                    <strong>Digital E-Ticket</strong>
+                    <small>Instant PDF &amp; QR code delivered to email</small>
+                  </span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="delivery" value="Stadium Pickup">
+                  <span class="radio-custom"></span>
+                  <span class="radio-text">
+                    <strong>Stadium Box Office Pickup</strong>
+                    <small>Collect official commemorative physical pass at gate</small>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- Extras / Add-ons -->
+            <fieldset class="form-fieldset">
+              <legend>Optional Matchday Add-ons</legend>
+              <div class="addon-grid">
+                <label class="checkbox-addon-card">
+                  <input type="checkbox" name="extras" value="Food Combo" data-price="350">
+                  <div class="addon-info">
+                    <span class="addon-title">🍔 Stadium Snack &amp; Beverage Combo</span>
+                    <span class="addon-price">+₹350 / ticket</span>
+                  </div>
+                </label>
+                <label class="checkbox-addon-card">
+                  <input type="checkbox" name="extras" value="Parking Pass" data-price="250">
+                  <div class="addon-info">
+                    <span class="addon-title">🚗 Reserved Stadium Parking Pass</span>
+                    <span class="addon-price">+₹250 flat</span>
+                  </div>
+                </label>
+                <label class="checkbox-addon-card">
+                  <input type="checkbox" name="extras" value="Official Jersey" data-price="999">
+                  <div class="addon-info">
+                    <span class="addon-title">👕 Official IPL Fan Merchandise Kit</span>
+                    <span class="addon-price">+₹999 / person</span>
+                  </div>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- Guidelines Agreement -->
+            <div class="form-group checkbox-simple">
+              <label class="terms-label">
+                <input type="checkbox" id="agree" name="agree" required>
+                <span>I confirm that I have reviewed the IPL stadium entry guidelines and safety protocols. *</span>
+              </label>
+              <span class="field-error" id="agree-error"></span>
+            </div>
+
+            <!-- Submit & Reset Buttons -->
+            <div class="form-action-row">
+              <button type="submit" id="submit-btn" class="btn btn-primary btn-submit">
+                <span>Confirm &amp; Book Tickets</span>
+                <span class="btn-arrow">&rarr;</span>
+              </button>
+              <button type="reset" id="reset-btn" class="btn btn-secondary">
+                Reset Form
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Live Calculation Summary Card (Sticky Flex/Grid child) -->
+        <aside class="booking-summary-wrapper" id="summary-section">
+          <div class="summary-card" id="booking-summary-card">
+            <div class="summary-top">
+              <div class="summary-title-badge">
+                <span class="live-pulse"></span>
+                <span>LIVE SUMMARY</span>
+              </div>
+              <span class="summary-state-pill" id="summary-state-pill">Awaiting Selection</span>
+            </div>
+
+            <div class="summary-details">
+              <div class="summary-item">
+                <span class="summary-label">Fixture:</span>
+                <span class="summary-val" id="summary-match">No match selected</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Venue:</span>
+                <span class="summary-val" id="summary-venue">—</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Date &amp; Time:</span>
+                <span class="summary-val" id="summary-datetime">—</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Stand Tier:</span>
+                <span class="summary-val" id="summary-stand">—</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Unit Rate:</span>
+                <span class="summary-val" id="summary-unit-price">₹0</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Quantity:</span>
+                <span class="summary-val" id="summary-quantity">1 ticket</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Add-ons:</span>
+                <span class="summary-val" id="summary-addons">None</span>
+              </div>
+
+              <div class="summary-divider"></div>
+
+              <div class="summary-total-container">
+                <div class="total-label-box">
+                  <span class="total-label">Grand Total:</span>
+                  <span class="tax-note">(Inclusive of GST &amp; fees)</span>
+                </div>
+                <div class="total-amount" id="summary-total-price">₹0</div>
+              </div>
+            </div>
+
+            <div class="summary-tip">
+              <span class="tip-icon">💡</span>
+              <span id="summary-tip-text">Choose a match and stand category to calculate your live total instantly.</span>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- My Ticket Bookings Section -->
+    <section id="my-bookings" class="section">
+      <div class="section-title-wrap">
+        <div>
+          <span class="section-subtitle">ORDER HISTORY</span>
+          <h2 class="section-title">My Ticket Bookings</h2>
+          <p class="section-desc">View your recorded reservations. Newly submitted forms append to this table dynamically.</p>
+        </div>
+      </div>
+
+      <div class="table-responsive-wrapper">
+        <table class="data-table" id="bookings-table">
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>Fan Name</th>
+              <th>Match Fixture</th>
+              <th>Stand Tier</th>
+              <th>Tickets</th>
+              <th>Delivery</th>
+              <th>Total Paid</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-body">
+            <tr>
+              <td><span class="id-tag">IPL-1001</span></td>
+              <td><strong>Rahul Sharma</strong></td>
+              <td>CSK vs MI</td>
+              <td>General</td>
+              <td>2</td>
+              <td>E-Ticket</td>
+              <td><span class="price-val">₹2,400</span></td>
+              <td><span class="badge badge-success">Confirmed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Guidelines Section: Displayed as 3-Column CSS Grid Section -->
+    <section id="guidelines" class="section guidelines-section">
+      <div class="section-title-wrap center-header">
+        <span class="section-subtitle">STADIUM PROTOCOLS</span>
+        <h2 class="section-title">Stadium Guidelines &amp; Code of Conduct</h2>
+        <p class="section-desc">Please adhere to the official BCCI stadium directives for a safe and hassle-free matchday experience.</p>
+      </div>
+
+      <!-- 3-Column CSS Grid (Reflows to 1-column on mobile & tablet) -->
+      <div class="guidelines-grid">
+        
+        <!-- Guideline Card 1 -->
+        <article class="guideline-card">
+          <div class="guideline-icon-wrapper icon-blue">
+            <span class="guideline-icon">📱</span>
+          </div>
+          <span class="guideline-step">Protocol 01</span>
+          <h3 class="guideline-title">Digital QR Verification</h3>
+          <p class="guideline-text">
+            Present your high-contrast digital QR e-ticket directly on your mobile device at entrance turnstiles.
+            Keep device brightness elevated for rapid automated contactless barcode validation.
+          </p>
+          <ul class="guideline-checklist">
+            <li>Save PDF offline before arriving</li>
+            <li>Single turnstile scan per attendee</li>
+          </ul>
+        </article>
+
+        <!-- Guideline Card 2 -->
+        <article class="guideline-card">
+          <div class="guideline-icon-wrapper icon-gold">
+            <span class="guideline-icon">🪪</span>
+          </div>
+          <span class="guideline-step">Protocol 02</span>
+          <h3 class="guideline-title">Government Photo ID Required</h3>
+          <p class="guideline-text">
+            Each ticket holder must carry a valid original Government Photo ID (Aadhaar Card, Driving License, 
+            Passport, or Voter ID Card). Name on physical ID must match reservation credentials.
+          </p>
+          <ul class="guideline-checklist">
+            <li>Original physical ID or DigiLocker copy</li>
+            <li>Random security gate spot-checks</li>
+          </ul>
+        </article>
+
+        <!-- Guideline Card 3 -->
+        <article class="guideline-card">
+          <div class="guideline-icon-wrapper icon-red">
+            <span class="guideline-icon">🚫</span>
+          </div>
+          <span class="guideline-step">Protocol 03</span>
+          <h3 class="guideline-title">Security &amp; Prohibited Items</h3>
+          <p class="guideline-text">
+            Outside food, glass/metal beverage bottles, power banks, umbrellas with pointed ends, helmets, 
+            professional cameras with detachable telephoto lenses, and flammable items are strictly prohibited.
+          </p>
+          <ul class="guideline-checklist">
+            <li>Free baggage counters at Gate 4</li>
+            <li>Full bag screening prior to gate access</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="brand-text-group">
+          <span class="brand-title">🏏 IPL 2026 Portal</span>
+          <span class="brand-subtitle">Web Application Development - Activity 8</span>
+        </div>
+        <p class="footer-copy">
+          Demonstrating responsive layouts with CSS Grid, Flexbox, media queries, and JavaScript DOM interactivity.
+        </p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Navigation</h4>
+        <ul>
+          <li><a href="#matches">Match Schedule</a></li>
+          <li><a href="#booking">Book Tickets</a></li>
+          <li><a href="#my-bookings">My Bookings</a></li>
+          <li><a href="#guidelines">Stadium Guidelines</a></li>
+        </ul>
+      </div>
+      <div class="footer-meta">
+        <h4>Technology Stack</h4>
+        <span class="tech-tag">HTML5 Semantic Layout</span>
+        <span class="tech-tag">CSS Grid (Cards &amp; 3-Col)</span>
+        <span class="tech-tag">Flexbox (Navbar &amp; Controls)</span>
+        <span class="tech-tag">Media Queries (Mobile / Tablet)</span>
+        <span class="tech-tag">JavaScript Interactivity</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 IPL Ticket Booking Portal &bull; Academic Laboratory Activity 8 Submission.</p>
+    </div>
+  </footer>
+
+  <!-- Activity 8 JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
